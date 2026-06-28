@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Mascota - Mascotas Unidas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/detalle-perdida.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <i class="fa-solid fa-paw"></i>
+        <span>Mascotas Unidas</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="mascotas-perdidas.html" id="nav-perdidas">Mascotas Perdidas</a></li>
+            <li><a href="mascotas-encontradas.html" id="nav-encontradas">Mascotas Encontradas</a></li>
+            <li><a href="mapa.html">Mapa</a></li>
+            <li><a href="consejos.html">Consejos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+    <div id="auth-container" class="auth-buttons">
+        <a href="login.html" class="btn-login">Iniciar sesión</a>
+        <a href="registro.html" class="btn-register">Registrarse</a>
+    </div>
+</header>
+
+<section class="breadcrumb">
+    <a href="index.html">Inicio</a> <span>/</span>
+    <a href="mascotas-perdidas.html" id="breadcrumb-seccion">Mascotas Perdidas</a> <span>/</span>
+    <strong id="breadcrumb-nombre">Cargando...</strong>
+</section>
+
+<section class="detalle-container">
+    <div class="foto-slider">
+        <button class="nav-btn prev" onclick="cambiarFoto(-1)">&#10094;</button>
+        <img id="img-principal" src="images/sin-foto.png" alt="Mascota">
+        <button class="nav-btn next" onclick="cambiarFoto(1)">&#10095;</button>
+        <span class="estado" id="estado-etiqueta">Buscando...</span>
+    </div>
+
+    <div class="info-mascota">
+        <h1 id="titulo-nombre">Cargando reporte...</h1>
+        
+        <div class="datos">
+            <p style="color: #666;"><i class="fa-solid fa-spinner fa-spin"></i> Obteniendo especificaciones de la mascota...</p>
+        </div>
+        
+        <div class="recompensa" id="seccion-recompensa" style="display: none;"></div>
+        
+        <button class="btn-contactar">Contactar propietario</button>
+    </div>
+</section>
+
+<section class="descripcion">
+    <h2>Descripción</h2>
+    <p id="descripcion-texto">Cargando detalles adicionales proporcionados por el propietario...</p>
+</section>
+
+<footer>
+    <div>
+        <strong>Mascotas Unidas</strong>
+    </div>
+    <div class="autor" style="font-weight: 600; color: #555; font-size: 14px;">
+        Realizado por: Karla Elena Mamani
+    </div>
+</footer>
+
+<script src="js/global.js"></script>
+<script src="js/detalle.js"></script>
+</body>
+</html>

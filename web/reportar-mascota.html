@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportar Mascota - Mascotas Unidas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reportar-mascota.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <i class="fa-solid fa-paw"></i>
+        <span>Mascotas Unidas</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="mascotas-perdidas.html">Mascotas Perdidas</a></li>
+            <li><a href="mascotas-encontradas.html">Mascotas Encontradas</a></li>
+            <li><a href="mapa.html">Mapa</a></li>
+            <li><a href="consejos.html">Consejos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+    <div id="auth-container" class="auth-buttons">
+        <a href="login.html" class="btn-login">Iniciar sesión</a>
+        <a href="registro.html" class="btn-register">Registrarse</a>
+    </div>
+</header>
+
+<section class="reportar-container">
+    <div class="reportar-card">
+        <div class="reportar-title">
+            <i class="fa-solid fa-bullhorn"></i>
+            <h1>Reportar una Mascota</h1>
+            <p>Completá los datos lo más detallado posible para ayudar en la búsqueda o reencuentro.</p>
+        </div>
+
+        <div id="contenedorMensaje"></div>
+
+        <form id="formReportar" enctype="multipart/form-data">
+            
+            <div class="form-section-title">1. Tipo de Publicación</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>¿Qué vas a reportar? *</label>
+                    <select name="tipo_publicacion" required>
+                        <option value="" disabled selected>Seleccioná una opción</option>
+                        <option value="PERDIDA">Perdí a mi mascota (Perdida)</option>
+                        <option value="ENCONTRADA">Encontré una mascota (Encontrada)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nombre de la mascota (Si lo sabés)</label>
+                    <input type="text" name="nombre" placeholder="Ej: Firulais, Michi...">
+                </div>
+            </div>
+
+            <div class="form-section-title">2. Características de la Mascota</div>
+            <div class="form-row tier-3">
+                <div class="form-group">
+                    <label>Especie *</label>
+                    <select name="especie" required>
+                        <option value="" disabled selected>Seleccioná</option>
+                        <option value="PERRO">Perro</option>
+                        <option value="GATO">Gato</option>
+                        <option value="AVE">Ave</option>
+                        <option value="CONEJO">Conejo</option>
+                        <option value="OTRO">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Raza</label>
+                    <input type="text" name="raza" placeholder="Ej: Caniche, Siamés, Mestizo...">
+                </div>
+                <div class="form-group">
+                    <label>Sexo *</label>
+                    <select name="sexo" required>
+                        <option value="NO_IDENTIFICADO">No identificado / No sé</option>
+                        <option value="MACHO">Macho</option>
+                        <option value="HEMBRA">Hembra</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Edad aproximada</label>
+                    <input type="text" name="edad" placeholder="Ej: 2 años, Cachorro, Viejito...">
+                </div>
+                <div class="form-group">
+                    <label>Color principal *</label>
+                    <input type="text" name="color" placeholder="Ej: Negro con manchas blancas, Dorado..." required>
+                </div>
+                <div class="form-group">
+                    <label>Tamaño *</label>
+                    <select name="tamano" required>
+                        <option value="" disabled selected>Seleccioná tamaño</option>
+                        <option value="PEQUENO">Pequeño</option>
+                        <option value="MEDIANO">Mediano</option>
+                        <option value="GRANDE">Grande</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section-title">3. Ubicación y Fecha de los Hechos</div>
+            <div class="form-row tier-3">
+                <div class="form-group">
+                    <label>Provincia *</label>
+                    <select id="selectProvincia" name="provincia_id" required>
+                        <option value="" disabled selected>Seleccioná Provincia</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Localidad *</label>
+                    <select id="selectLocalidad" name="localidad_id" required disabled>
+                        <option value="" disabled selected>Seleccioná Localidad</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Fecha del evento *</label>
+                    <input type="date" name="fecha_evento" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Dirección o Referencia aproximada *</label>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input type="text" id="inputDireccion" name="direccion" placeholder="Ej: Av. Kirchner 1500" required style="flex-grow: 1;">
+                    <button type="button" id="btnBuscarCoordenadas" style="padding: 12px 20px; margin: 0; font-size: 14px; background-color: #f1f3f5; color: #495057; border-radius: 8px; border: 1px solid #ccc; cursor: pointer;">
+                        <i class="fa-solid fa-location-crosshairs"></i> Ubicar
+                    </button>
+                </div>
+                
+                <div id="map" style="width: 100%; height: 320px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 5px; z-index: 1;"></div>
+                
+                <small id="statusUbicacion" style="color: #666; margin-top: 5px; display: block;">Podés escribir la dirección y presionar "Ubicar" o hacer click/arrastrar directamente sobre el mapa.</small>
+            </div>
+
+            <input type="hidden" name="latitud" value="">
+            <input type="hidden" name="longitud" value="">
+
+            <div class="form-section-title">4. Detalles y Fotos</div>
+            <div class="form-group">
+                <label>Descripción detallada *</label>
+                <textarea name="descripcion" rows="4" placeholder="Contanos señas particulares, si llevaba collar, comportamiento, etc." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Seleccionar fotos de la mascota *</label>
+                <input type="file" id="inputFoto" name="foto_mascota" accept="image/png, image/jpeg, image/jpg, image/webp" multiple style="margin-top: 5px; margin-bottom: 10px;">
+                
+                <div id="listaArchivosContenedor" style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px;"></div>
+
+                <small style="color: #777; margin-top: 5px; display: block;">* Se requiere al menos una imagen (Máximo 5 imágenes). La primera de la lista será la portada principal.</small>
+            </div>
+
+            <button type="submit" class="reportar-btn">Publicar Reporte</button>
+        </form>
+    </div>
+</section>
+
+<div id="modalConfirmacion" class="custom-modal-overlay">
+    <div class="custom-modal-box">
+        <div class="custom-modal-icon">
+            <i class="fa-solid fa-circle-question"></i>
+        </div>
+        <h2>¿Confirmar publicación?</h2>
+        <p>Tu reporte será visible inmediatamente en la plataforma para que toda la comunidad pueda colaborar.</p>
+        <div class="custom-modal-buttons">
+            <button type="button" id="btnModalCancelar" class="modal-btn modal-btn-cancel">Cancelar</button>
+            <button type="button" id="btnModalConfirmar" class="modal-btn modal-btn-confirm">Sí, publicar</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div><strong>Mascotas Unidas</strong></div>
+    <div class="autor" style="font-weight: 600; color: #555; font-size: 14px;">
+        Realizado por: Karla Elena Mamani
+    </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script src="js/global.js"></script>
+<script src="js/reportar.js"></script>
+
+</body>
+</html>

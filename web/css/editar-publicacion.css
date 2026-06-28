@@ -1,0 +1,96 @@
+/* ==========================================================================
+   FORMULARIO DE EDICIÓN AVANZADO
+========================================================================== */
+.editable-input {
+    width: 100%;
+    padding: 11px 14px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #333;
+    background-color: #fafafa;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.editable-input:focus {
+    border-color: #e91e63;
+    background-color: #ffffff;
+    outline: none;
+}
+
+.datos label {
+    display: block;
+    margin-bottom: 16px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Gestión de Fotos Existentes */
+.foto-slider-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+}
+
+.btn-borrar-existente {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    background-color: #fff1f0;
+    color: #d9363e;
+    border: 1px dashed #rose;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.btn-borrar-existente:hover {
+    background-color: #fca5a5;
+    color: white;
+}
+
+/* ==========================================================================
+   BOTONES PRIMARIOS DEL PANEL DE CONTROL
+========================================================================== */
+.btn-guardar {
+    width: 100%;
+    margin-top: 15px;
+    padding: 15px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-guardar:hover {
+    background: #218838;
+}
+
+.btn-baja-container {
+    margin-top: 12px;
+}
+
+.btn-baja-danger {
+    width: 100%;
+    padding: 12px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: background 0.2s;
+}
+
+.btn-baja-danger:hover {
+    background: #c82333;
+}

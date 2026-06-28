@@ -1,0 +1,139 @@
+/* =========================
+   HEADER & LAYOUT
+========================= */
+.page-header {
+    padding: 50px 5%;
+}
+
+.page-header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 18px;
+    color: #555;
+}
+
+.map-layout {
+    padding: 0 5% 50px;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 25px;
+}
+
+/* =========================
+   FILTROS
+========================= */
+.filter-card,
+.legend {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-card h2 {
+    margin-bottom: 20px;
+}
+
+.filter-card label {
+    display: block;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.apply-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #e91e63;
+    color: white;
+    border: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.apply-btn:hover {
+    background: #d81b60;
+}
+
+/* =========================
+   MAPA (LEAFLET)
+========================= */
+.map-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#map {
+    width: 100%;
+    height: 650px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: #e9e9e9;
+    z-index: 1;
+}
+
+.map-info {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.map-info i {
+    margin-right: 10px;
+    color: #e91e63;
+}
+
+/* =========================
+   LEYENDA
+========================= */
+.legend p {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.legend i {
+    margin-right: 10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width: 992px) {
+    .map-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 768px) {
+    .page-header h1 {
+        font-size: 36px;
+    }
+    #map {
+        height: 450px;
+    }
+}
+
+/* Botón Limpiar mejorado */
+.clear-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    font-weight: bold;
+}
+
+.clear-btn:hover {
+    background: #e0e0e0;
+}
