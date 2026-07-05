@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mascotas Encontradas - Mascotas Unidas</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mascotas-encontradas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <i class="fa-solid fa-paw"></i>
+        <span>Mascotas Unidas</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="mascotas-perdidas.html">Mascotas Perdidas</a></li>
+            <li><a href="#" class="active">Mascotas Encontradas</a></li>
+            <li><a href="mapa.html">Mapa</a></li>
+            <li><a href="consejos.html">Consejos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div id="auth-container" class="auth-buttons">
+        <a href="login.html" class="btn-login active">Iniciar sesión</a>
+        <a href="registro.html" class="btn-register">Registrarse</a>
+    </div>
+</header>
+
+<section class="page-header">
+    <h1>MASCOTAS ENCONTRADAS</h1>
+    <p>Estas mascotas fueron encontradas. Ayudá a que vuelvan con sus familias.</p>
+</section>
+
+<section class="search-bar">
+    <select id="filtro-zona">
+        <option value="">Ciudad o zona (Todas)</option>
+    </select>
+
+    <select id="filtro-raza">
+        <option value="">Todas las razas</option>
+    </select>
+
+    <input type="date" id="filtro-fecha">
+
+    <button id="btn-buscar">
+        <i class="fa-solid fa-magnifying-glass"></i> Buscar
+    </button>
+</section>
+
+<section class="main-content">
+
+    <div class="pets-list" id="contenedorEncontradas">
+        <p style="color:#666; width:100%; text-align:center;"><i class="fa-solid fa-spinner fa-spin"></i> Cargando mascotas encontradas...</p>
+    </div>
+
+    <aside class="sidebar">
+        <h2>Filtros</h2>
+
+        <label for="filtro-especie">Tipo de mascota</label>
+        <select id="filtro-especie">
+            <option value="TODOS">TODOS</option>
+            <option value="PERRO">PERRO</option>
+            <option value="GATO">GATO</option>
+            <option value="AVE">AVE</option>
+            <option value="CONEJO">CONEJO</option>
+            <option value="OTRO">OTRO</option>
+        </select>
+
+        <label for="filtro-tamano">Tamaño</label>
+        <select id="filtro-tamano">
+            <option value="">Todos</option>
+            <option value="Chico">Chico</option>
+            <option value="Mediano">Mediano</option>
+            <option value="Grande">Grande</option>
+        </select>
+
+        <label for="filtro-sexo">Sexo</label>
+        <select id="filtro-sexo">
+            <option value="">Todos</option>
+            <option value="Macho">Macho</option>
+            <option value="Hembra">Hembra</option>
+            <option value="No identificado">No identificado</option>
+        </select>
+
+        <button class="apply-filter" id="btn-aplicar-filtros">Aplicar filtros</button>
+        <button class="clear-filter" id="btn-limpiar-filtros" style="background:#eee; border:1px solid #ccc; border-radius:8px; cursor:pointer; font-weight: 600;">Limpiar filtros</button>
+    </aside>
+
+</section>
+
+<footer>
+    <div>
+        <strong>Mascotas Unidas</strong>
+    </div>
+    <div class="autor" style="font-weight: 600; color: #555; font-size: 14px;">
+        Realizado por: Karla Elena Mamani
+    </div>
+</footer>
+
+<script src="js/global.js"></script>
+<script src="js/mascotas-encontradas.js"></script>
+</body>
+
+</html>

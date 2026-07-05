@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Publicación - Mascotas Unidas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/detalle-perdida.css">
+    <link rel="stylesheet" href="css/reportar-mascota.css"> 
+    <link rel="stylesheet" href="css/editar-publicacion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <i class="fa-solid fa-paw"></i>
+        <span>Mascotas Unidas</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="mascotas-perdidas.html">Mascotas Perdidas</a></li>
+            <li><a href="mascotas-encontradas.html">Mascotas Encontradas</a></li>
+            <li><a href="mapa.html">Mapa</a></li>
+            <li><a href="consejos.html">Consejos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+    <div id="auth-container" class="auth-buttons"></div>
+</header>
+
+<section class="breadcrumb">
+    <a href="mis-publicaciones.html">Mis Publicaciones</a> <span>/</span>
+    <strong>Editar Reporte</strong>
+</section>
+
+<div id="contenedorMensaje" style="max-width: 1200px; margin: 10px auto; padding: 0 20px;"></div>
+
+<form id="form-editar-publicacion" enctype="multipart/form-data">
+    <input type="hidden" name="latitud" id="inputLatitud">
+    <input type="hidden" name="longitud" id="inputLongitud">
+
+    <section class="detalle-container">
+        <div class="foto-slider-wrapper">
+            <div class="foto-slider">
+                <button type="button" class="nav-btn prev" onclick="cambiarFoto(-1)">&#10094;</button>
+                <img id="img-principal" src="images/sin-foto.png" alt="Mascota">
+                <button type="button" class="nav-btn next" onclick="cambiarFoto(1)">&#10095;</button>
+                <span class="estado" id="estado-etiqueta">Cargando...</span>
+            </div>
+            <button type="button" id="btn-eliminar-foto-actual" class="btn-borrar-existente" onclick="marcarEliminacionFotoActual()">
+                <i class="fa-solid fa-trash-can"></i> Eliminar esta foto
+            </button>
+            
+            <div class="upload-nuevas-fotos" style="margin-top:20px;">
+                <label class="form-section-title" style="display:block; font-size:14px;"><i class="fa-solid fa-camera"></i> Agregar nuevas fotos (Máx. 5 en total):</label>
+                <input type="file" id="inputFoto" accept="image/*" multiple class="editable-input">
+                <div id="listaArchivosContenedor" style="margin-top:10px; display:flex; flex-direction:column; gap:8px;"></div>
+            </div>
+        </div>
+
+        <div class="info-mascota">
+            <div class="datos">
+                <label>
+                    <i class="fa-solid fa-font"></i> Nombre de la Mascota:
+                    <input type="text" name="nombre" id="edit-nombre" class="editable-input" required>
+                </label>
+                
+                <label>
+                    <i class="fa-solid fa-paw"></i> Especie:
+                    <select name="especie" id="edit-especie" class="editable-input" required>
+                        <option value="PERRO">Perro</option>
+                        <option value="GATO">Gato</option>
+                        <option value="AVE">Ave</option>
+                        <option value="CONEJO">Conejo</option>
+                        <option value="OTRO">Otro</option>
+                    </select>
+                </label>
+
+                <label>
+                    <i class="fa-solid fa-dna"></i> Raza:
+                    <input type="text" name="raza" id="edit-raza" class="editable-input">
+                </label>
+
+                <label>
+                    <i class="fa-solid fa-venus-mars"></i> Sexo:
+                    <select name="sexo" id="edit-sexo" class="editable-input">
+                        <option value="MACHO">Macho</option>
+                        <option value="HEMBRA">Hembra</option>
+                        <option value="NO_IDENTIFICADO">No Identificado</option>
+                    </select>
+                </label>
+
+                <label>
+                    <i class="fa-solid fa-cake-candles"></i> Edad aproximada:
+                    <input type="text" name="edad" id="edit-edad" class="editable-input">
+                </label>
+
+                <label>
+                    <i class="fa-solid fa-palette"></i> Color dominante:
+                    <input type="text" name="color" id="edit-color" class="editable-input">
+                </label>
+
+                <label>
+                    <i class="fa-solid fa-ruler"></i> Tamaño:
+                    <select name="tamano" id="edit-tamano" class="editable-input">
+                        <option value="PEQUENO">Pequeño</option>
+                        <option value="MEDIANO">Mediano</option>
+                        <option value="GRANDE">Grande</option>
+                    </select>
+                </label>
+
+                <label>
+                    <i class="fa-regular fa-calendar"></i> Fecha del hecho:
+                    <input type="date" name="fecha_evento" id="edit-fecha" class="editable-input" required>
+                </label>
+            </div>
+            
+            <div class="form-actions-container" style="margin-top: 25px; display: flex; flex-direction: column; gap: 10px;">
+    
+            <button type="submit" class="btn-guardar" style="background-color: #28a745; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                <i class="fa-solid fa-floppy-disk"></i> Guardar Cambios
+            </button>
+
+            <button type="button" class="btn-resuelto" style="background-color: #17a2b8; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;" onclick="abrirModalResuelto()">
+                <i class="fa-solid fa-heart-circle-check"></i> Caso Resuelto
+            </button>
+
+            <button type="button" class="btn-baja" style="background-color: #dc3545; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;" onclick="abrirModalBaja()">
+                <i class="fa-solid fa-trash-can"></i> Dar de baja reporte
+            </button>
+        </div>
+        </div>
+        
+    </section>
+
+    <section class="descripcion" style="margin-top: 30px;">
+        <div class="form-section-title"><i class="fa-solid fa-map-location-dot"></i> Modificar Ubicación Geográfica</div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 15px;">
+            <div class="form-group" style="margin-bottom:0;">
+                <label>Provincia:</label>
+                <select id="selectProvincia" class="editable-input" required>
+                    <option value="" disabled selected>Seleccioná Provincia</option>
+                </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+                <label>Localidad:</label>
+                <input type="hidden" name="localidad_id" id="inputLocalidadIdHidden">
+                <select id="selectLocalidad" class="editable-input" disabled required>
+                    <option value="" disabled selected>Seleccioná Localidad</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Dirección específica (Calle y altura):</label>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" name="direccion" id="inputDireccion" class="editable-input" style="margin-top:0;" placeholder="Ej: Av. Kirchner 1234" required>
+                <button type="button" id="btnBuscarCoordenadas" class="modal-btn modal-btn-confirm" style="white-space: nowrap; border-radius:8px;">
+                    <i class="fa-solid fa-magnifying-glass-location"></i> Ubicar en Mapa
+                </button>
+            </div>
+            <div id="statusUbicacion" style="margin-top: 8px; font-weight: bold; font-size: 14px;"></div>
+        </div>
+
+        <div id="map" style="height: 350px; width: 100%; border-radius: 12px; border: 2px solid #ccc; margin-top: 15px; z-index: 1;"></div>
+    </section>
+
+    <section class="descripcion" style="margin-top: 20px;">
+        <h2>Descripción del caso</h2>
+        <textarea name="descripcion" id="edit-descripcion" class="editable-input" rows="5" style="resize:vertical;" placeholder="Detalles adicionales, señas particulares..."></textarea>
+    </section>
+</form>
+
+<footer>
+    <div><strong>Mascotas Unidas</strong></div>
+    <div class="autor" style="font-weight: 600; color: #555; font-size: 14px;">
+        Realizado por: Karla Elena Mamani
+    </div>
+</footer>
+
+<div class="custom-modal-overlay" id="modalGuardar">
+    <div class="custom-modal-box">
+        <div class="custom-modal-icon" style="color: #28a745;"><i class="fa-solid fa-circle-check"></i></div>
+        <h2>¿Guardar cambios de la publicación?</h2>
+        <p>Se actualizarán los datos informativos, las fotos procesadas y la geolocalización de la mascota en el mapa general.</p>
+        <div class="custom-modal-buttons">
+            <button type="button" class="modal-btn modal-btn-confirm" style="background-color: #28a745;" onclick="confirmarGuardarProceso()">Sí, actualizar</button>
+            <button type="button" class="modal-btn modal-btn-cancel" onclick="cerrarModalGuardar()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<div class="custom-modal-overlay" id="modalBaja">
+    <div class="custom-modal-box">
+        <div class="custom-modal-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+        <h2>¿Dar de baja publicación?</h2>
+        <p>¿Estás seguro de que deseas retirar la publicación de <strong id="modal-pet-name">esta mascota</strong>? Esta acción no se puede deshacer.</p>
+        <div class="custom-modal-buttons">
+            <button type="button" class="modal-btn modal-btn-confirm" onclick="confirmarBajaProceso()">Sí, dar de baja</button>
+            <button type="button" class="modal-btn modal-btn-cancel" onclick="cerrarModalBaja()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<div class="custom-modal-overlay" id="modalEliminarFoto">
+    <div class="custom-modal-box">
+        <div class="custom-modal-icon" style="color: #dc3545;"><i class="fa-solid fa-trash-can"></i></div>
+        <h2>¿Remover esta imagen?</h2>
+        <p>La foto se ocultará de la vista previa inmediatamente. Recuerda que el cambio se aplicará de forma definitiva en el sistema al presionar <strong>"Guardar Cambios"</strong>.</p>
+        <div class="custom-modal-buttons">
+            <button type="button" class="modal-btn modal-btn-confirm" style="background-color: #dc3545;" onclick="confirmarEliminacionFotoProceso()">Sí, remover</button>
+            <button type="button" class="modal-btn modal-btn-cancel" onclick="cerrarModalEliminarFoto()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<div class="custom-modal-overlay" id="modalResuelto">
+    <div class="custom-modal-box">
+        <div class="custom-modal-icon" style="color: #17a2b8;"><i class="fa-solid fa-heart-circle-check"></i></div>
+        <h2>¿Marcar como Caso Resuelto?</h2>
+        <p>¡Qué alegría! Al confirmar, el sistema registrará este reporte como: <strong>"Mascota Reunida con sus dueños"</strong> y dejará de mostrarse en las búsquedas públicas.</p>
+        <div class="custom-modal-buttons">
+            <button type="button" class="modal-btn modal-btn-confirm" style="background-color: #17a2b8;" onclick="confirmarResueltoProceso()">Sí, ¡reunida!</button>
+            <button type="button" class="modal-btn modal-btn-cancel" onclick="cerrarModalResuelto()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/global.js"></script>
+<script src="js/editar-publicacion.js"></script>
+</body>
+</html>
