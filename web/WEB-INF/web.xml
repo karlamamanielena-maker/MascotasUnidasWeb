@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <display-name>Mascotas Unidas Web Application</display-name>
+
+    <servlet>
+        <servlet-name>ContactoServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.ContactoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContactoServlet</servlet-name>
+        <url-pattern>/contacto-enviar</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditarPublicacionServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.EditarPublicacionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditarPublicacionServlet</servlet-name>
+        <url-pattern>/editar-publicacion-data</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FotoServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.FotoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FotoServlet</servlet-name>
+        <url-pattern>/ver-foto</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HomeDataServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.HomeDataServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeDataServlet</servlet-name>
+        <url-pattern>/home-data</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MascotaDetalleServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.MascotaDetalleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MascotaDetalleServlet</servlet-name>
+        <url-pattern>/mascota-detalle</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MascotasEncontradasServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.MascotasEncontradasServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MascotasEncontradasServlet</servlet-name>
+        <url-pattern>/encontradas-data</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MascotasPerdidasServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.MascotasPerdidasServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MascotasPerdidasServlet</servlet-name>
+        <url-pattern>/perdidas-data</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MisPublicacionesServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.MisPublicacionesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MisPublicacionesServlet</servlet-name>
+        <url-pattern>/mis-publicaciones-data</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ObtenerMascotasMapaServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.ObtenerMascotasMapaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ObtenerMascotasMapaServlet</servlet-name>
+        <url-pattern>/api/mascotas-mapa</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RecuperarPasswordServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.RecuperarPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RecuperarPasswordServlet</servlet-name>
+        <url-pattern>/recuperar-password</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegistroServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.RegistroServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegistroServlet</servlet-name>
+        <url-pattern>/registro</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReportarMascotaServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.ReportarMascotaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReportarMascotaServlet</servlet-name>
+        <url-pattern>/reportar-mascota</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UbicacionServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.UbicacionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UbicacionServlet</servlet-name>
+        <url-pattern>/ubicacion</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VerificarSesionServlet</servlet-name>
+        <servlet-class>com.mascotasunidas.servlet.VerificarSesionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VerificarSesionServlet</servlet-name>
+        <url-pattern>/verificar-sesion</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>
